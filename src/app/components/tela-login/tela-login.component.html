@@ -1,0 +1,16 @@
+<div class="container">
+  <h1 class="titulo">
+    <span class="fonte-moderna">Task</span
+    ><span class="fonte-cursiva">Flow</span>
+  </h1>
+
+  <input type="text" placeholder="Usuário" [(ngModel)]="usuario" />
+  <input type="password" placeholder="Senha" [(ngModel)]="senha" />
+
+  <button (click)="fazerLogin()">Entrar</button>
+
+  <div class="acoes-secundarias">
+    <button (click)="criarConta()">Criar Conta</button>
+    <button (click)="esqueciSenha()">Esqueci minha senha</button>
+  </div>
+</div>
