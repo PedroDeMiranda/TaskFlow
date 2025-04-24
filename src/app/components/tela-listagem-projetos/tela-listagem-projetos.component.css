@@ -1,0 +1,45 @@
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 16px;
+  color: #012840;
+}
+
+.titulo {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 24px;
+  color: #fff;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.botao-editar {
+  background-color: #ff8c00;
+  color: black;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.botao-excluir {
+  background-color: #8b0000;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
