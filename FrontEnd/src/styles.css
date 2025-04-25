@@ -1,0 +1,15 @@
+/* Reset global básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Garantir que o body e html ocupem 100% da tela */
+html,
+body {
+  height: 100%;
+  overflow: hidden; /* remove barras de rolagem */
+  background-color: #001f3f; /* mesmo fundo da tela de login */
+  font-family: Arial, sans-serif;
+}

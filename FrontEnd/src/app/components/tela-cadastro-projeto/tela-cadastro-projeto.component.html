@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 class="titulo">Cadastrar Novo Projeto</h1>
+
+  <input
+    type="text"
+    [(ngModel)]="nomeProjeto"
+    placeholder="Nome do Projeto"
+    class="campo"
+  />
+
+  <select [(ngModel)]="status" class="campo">
+    <option value="" disabled selected>Status do Projeto</option>
+    <option value="Parado">Parado</option>
+    <option value="Em andamento">Em andamento</option>
+    <option value="Concluído">Concluído</option>
+  </select>
+
+  <textarea
+    [(ngModel)]="descricao"
+    placeholder="Breve descrição do projeto"
+    class="campo"
+  ></textarea>
+
+  <select [(ngModel)]="responsavel" class="campo">
+    <option value="" disabled selected>Profissional Responsável</option>
+    <option *ngFor="let membro of membrosEquipe" [value]="membro">
+      {{ membro }}
+    </option>
+  </select>
+
+  <button class="botao" (click)="cadastrarProjeto()">Cadastrar Projeto</button>
+</div>
