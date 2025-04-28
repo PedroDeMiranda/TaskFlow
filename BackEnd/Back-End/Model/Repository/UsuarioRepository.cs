@@ -93,9 +93,13 @@ namespace Back_End.Model.Repository
                 var usuarioExcluir = _appDbContext.Usuarios.FirstOrDefault(a => a.Id == id);
 
                 if (usuarioExcluir != null)
+
+
                 {
                     _appDbContext.Usuarios.Remove(usuarioExcluir);
                     await _appDbContext.SaveChangesAsync();
+
+
                     return true;
                 }
 

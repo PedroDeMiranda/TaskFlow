@@ -11,7 +11,7 @@
         "projectName": "Back-End",
         "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\TaskFlow\\BackEnd\\Back-End\\Back-End.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Source\\Repos\\TaskFlow\\BackEnd\\Back-End\\obj\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\TaskFlow\\BackEnd\\Back-End\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
