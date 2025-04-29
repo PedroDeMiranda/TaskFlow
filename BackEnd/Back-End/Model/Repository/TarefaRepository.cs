@@ -56,7 +56,7 @@ namespace Back_End.Model.Repository
                     throw new Exception("Tarefa não encontrada!");
 
                 tarefaEditar.Name = tarefa.Name;
-                tarefaEditar.Description = tarefa.Description;
+                tarefaEditar.Descricao = tarefa.Descricao;
                 tarefaEditar.Usuario = tarefa.Usuario;
 
                 _appDbContext.Tarefas.Update(tarefaEditar);

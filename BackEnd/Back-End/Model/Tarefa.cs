@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Back_End.Model
 {
-    public class Tarefas
+    public class Tarefa
     {
 
         [Key]

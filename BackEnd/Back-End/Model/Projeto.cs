@@ -15,7 +15,7 @@ namespace Back_End.Model
         public  string Status { get; set; }
         public required string Descrição { get; set; }
 
-        public List<Tarefas> Tarefas { get; set; } = new List<Tarefas>();
+        public List<Tarefa> Tarefas { get; set; } = new List<Tarefa>();
 
 
     }

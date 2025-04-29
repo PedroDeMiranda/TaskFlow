@@ -33,9 +33,9 @@ namespace Back_End.Model.Repository
             return login;
         }
 
-        public async Task<Usuario> BuscarPorId(Guid id) // Alterado o tipo do parâmetro para Guid
+        public async Task<Usuario> BuscarPorId(int id)
         {
-            var lUsuario = await _appDbContext.Usuarios.FirstOrDefaultAsync(a => a.Id == id); // Comparação agora é entre Guid e Guid
+            var lUsuario = await _appDbContext.Usuarios.FirstOrDefaultAsync(a => a.Id == id);
             if (lUsuario != null)
                 return lUsuario;
 
@@ -48,7 +48,7 @@ namespace Back_End.Model.Repository
             {
                 usuario.ValidarDados();
 
-                if (usuario.Id == Guid.Empty) // Novo usuário
+                if (usuario.Id < 0) // Novo usuário
                 {
                     usuario.GerarHashSenha(); // Gerar hash só na criação
                     _appDbContext.Usuarios.Add(usuario);
@@ -66,7 +66,7 @@ namespace Back_End.Model.Repository
                     usuarioEditar.Nome = usuario.Nome;
                     usuarioEditar.Email = usuario.Email;
 
-                    // Se for alterar a senha (opcional - depende da regra de negócio)
+                    // Se for alterar a senha
                     if (!string.IsNullOrWhiteSpace(usuario.Senha))
                     {
                         usuarioEditar.Senha = string.Empty; // Zera para segurança
@@ -86,11 +86,11 @@ namespace Back_End.Model.Repository
         }
 
 
-        public async Task<bool> Excluir(Guid id) // Alterado o tipo do parâmetro para Guid
+        public async Task<bool> Excluir(int id)
         {
             try
             {
-                var usuarioExcluir = _appDbContext.Usuarios.FirstOrDefault(a => a.Id == id); // Comparação agora é entre Guid e Guid
+                var usuarioExcluir = _appDbContext.Usuarios.FirstOrDefault(a => a.Id == id);
 
                 if (usuarioExcluir != null)
                 {
@@ -108,7 +108,12 @@ namespace Back_End.Model.Repository
             }
         }
 
-        public Task<Usuario> BuscarPorId(int id)
+        public Task<Usuario> BuscarPorId(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> Excluir(Guid id)
         {
             throw new NotImplementedException();
         }
