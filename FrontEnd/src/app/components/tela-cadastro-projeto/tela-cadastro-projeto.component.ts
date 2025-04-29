@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { ProjetoService, Projeto } from '../../servicos/projeto.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-cadastro-projeto',
@@ -11,11 +13,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class TelaCadastroProjetoComponent {
   nomeProjeto = '';
-  status = '';
   descricao = '';
   responsavel = '';
+  status = 'em andamento'; // Já define um padrão
 
-  // Lista estática dos membros da equipe (futuramente será dinâmica)
   membrosEquipe = [
     'Ana Beatriz Souza',
     'Carlos Henrique Lima',
@@ -23,14 +24,22 @@ export class TelaCadastroProjetoComponent {
     'João Marcos Pereira',
   ];
 
+  constructor(private projetoService: ProjetoService, private router: Router) {}
+
   cadastrarProjeto() {
-    console.log('Projeto cadastrado:', {
+    const novoProjeto: Projeto = {
+      id: Date.now().toString(), // gera ID único
       nome: this.nomeProjeto,
       status: this.status,
       descricao: this.descricao,
       responsavel: this.responsavel,
-    });
+    };
 
-    // Integração futura com backend aqui
+    this.projetoService.cadastrarProjeto(novoProjeto);
+
+    alert('Projeto cadastrado com sucesso!');
+    this.router.navigate(['/projetos']); // Redireciona para listagem
+
+    console.log('Projeto cadastrado:', novoProjeto);
   }
 }

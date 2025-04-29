@@ -6,6 +6,8 @@ import { TelaEquipeComponent } from './components/tela-equipe/tela-equipe.compon
 import { TelaCadastroProjetoComponent } from './components/tela-cadastro-projeto/tela-cadastro-projeto.component';
 import { TelaListagemProjetosComponent } from './components/tela-listagem-projetos/tela-listagem-projetos.component';
 import { TelaEdicaoProjetoComponent } from './components/tela-edicao-projeto/tela-edicao-projeto.component';
+import { TelaLogadoComponent } from './components/tela-logado/tela-logado.component';
+import { TelaStatusProjetosComponent } from './components/tela-status-projetos/tela-status-projetos.component';
 
 export const routes: Routes = [
   { path: '', component: TelaHomeComponent },
@@ -15,4 +17,6 @@ export const routes: Routes = [
   { path: 'cadastro-projeto', component: TelaCadastroProjetoComponent },
   { path: 'projetos', component: TelaListagemProjetosComponent },
   { path: 'editar-projeto/:id', component: TelaEdicaoProjetoComponent },
+  { path: 'logado', component: TelaLogadoComponent },
+  { path: 'status-projetos', component: TelaStatusProjetosComponent },
 ];

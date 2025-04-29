@@ -1,0 +1,33 @@
+<h1 class="titulo-pagina">Status de Projetos</h1>
+
+<div class="container">
+  <div class="coluna">
+    <h2>Em Andamento</h2>
+    <div class="lista-projetos">
+      <div class="projeto" *ngFor="let projeto of projetosEmAndamento">
+        <h3>{{ projeto.nome }}</h3>
+        <p>{{ projeto.descricao }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="coluna">
+    <h2>Parado</h2>
+    <div class="lista-projetos">
+      <div class="projeto" *ngFor="let projeto of projetosParados">
+        <h3>{{ projeto.nome }}</h3>
+        <p>{{ projeto.descricao }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="coluna">
+    <h2>Concluído</h2>
+    <div class="lista-projetos">
+      <div class="projeto" *ngFor="let projeto of projetosConcluidos">
+        <h3>{{ projeto.nome }}</h3>
+        <p>{{ projeto.descricao }}</p>
+      </div>
+    </div>
+  </div>
+</div>

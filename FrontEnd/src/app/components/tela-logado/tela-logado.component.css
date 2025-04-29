@@ -1,0 +1,51 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+.container {
+  height: 100vh;
+  background-color: #001f3f; /* Azul marinho */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 10px;
+}
+
+.titulo {
+  font-family: "Roboto", sans-serif;
+  font-size: 36px;
+  color: white;
+  margin-bottom: 40px;
+}
+
+.botoes button {
+  width: 250px;
+  padding: 15px;
+  margin: 10px;
+  font-size: 18px;
+  background-color: #27ae60; /* Verde escuro */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.botoes button:hover {
+  background-color: #219150; /* Tom mais escuro no hover */
+}
+
+.saudacao {
+  font-family: "Roboto", sans-serif;
+  font-size: 24px;
+  color: #ffffff;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}

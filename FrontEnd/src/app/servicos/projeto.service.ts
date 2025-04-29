@@ -1,47 +1,71 @@
-// src/app/servicos/projeto.service.ts
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
+export interface Projeto {
+  id: string;
+  nome: string;
+  descricao: string;
+  status: string;
+  responsavel: string;
+}
 
 @Injectable({
-  providedIn: 'root', // singleton para toda a app :contentReference[oaicite:2]{index=2}
+  providedIn: 'root',
 })
 export class ProjetoService {
-  private projetos = [
-    {
-      id: '1',
-      nome: 'Redesign do App',
-      status: 'Em andamento',
-      descricao: 'Refatoração completa do layout mobile.',
-      responsavel: 'Ana Beatriz Souza',
-    },
-    {
-      id: '2',
-      nome: 'Sistema de Relatórios',
-      status: 'Parado',
-      descricao: 'Implementar relatórios gerenciais mensais.',
-      responsavel: 'Carlos Henrique Lima',
-    },
-  ];
+  private projetosSubject = new BehaviorSubject<Projeto[]>([]);
+  projetos$ = this.projetosSubject.asObservable();
 
-  /** Retorna uma cópia da lista atual de projetos */
-  listarProjetos(): any[] {
-    return this.projetos.slice(); // nova referência a cada chamada :contentReference[oaicite:3]{index=3}
+  constructor() {
+    // Carrega os projetos do localStorage
+    const projetosSalvos = localStorage.getItem('projetos');
+    const projetosIniciais = projetosSalvos ? JSON.parse(projetosSalvos) : [];
+
+    this.projetosSubject.next(projetosIniciais);
   }
 
-  obterProjetoPorId(id: string) {
-    return this.projetos.find((p) => p.id === id);
+  // Método para listar todos os projetos
+  listarProjetos(): Projeto[] {
+    return this.projetosSubject.getValue();
   }
 
-  atualizarProjeto(id: string, dadosAtualizados: any) {
-    const i = this.projetos.findIndex((p) => p.id === id);
-    if (i !== -1) {
-      this.projetos[i] = { ...this.projetos[i], ...dadosAtualizados };
-    }
+  // Método para cadastrar um novo projeto
+  cadastrarProjeto(projeto: Projeto): void {
+    const projetosAtuais = this.projetosSubject.getValue();
+    projeto.id = (projetosAtuais.length + 1).toString(); // Gerando ID simples
+    projetosAtuais.push(projeto);
+    this.projetosSubject.next(projetosAtuais);
+    localStorage.setItem('projetos', JSON.stringify(projetosAtuais)); // Atualiza o localStorage
   }
 
-  excluirProjeto(id: string) {
-    const index = this.projetos.findIndex((p) => p.id === id);
+  // Método para atualizar um projeto existente
+  atualizarProjeto(id: string, projetoAtualizado: Projeto): void {
+    const projetosAtuais = this.projetosSubject.getValue();
+    const index = projetosAtuais.findIndex((projeto) => projeto.id === id);
+
     if (index !== -1) {
-      this.projetos.splice(index, 1);
+      projetosAtuais[index] = projetoAtualizado;
+      this.projetosSubject.next(projetosAtuais); // Atualiza a lista de projetos
+      localStorage.setItem('projetos', JSON.stringify(projetosAtuais)); // Atualiza o localStorage
     }
+  }
+
+  // Método para excluir um projeto
+  excluirProjeto(id: string): void {
+    const projetosAtuais = this.projetosSubject.getValue();
+    const index = projetosAtuais.findIndex((projeto) => projeto.id === id);
+
+    if (index !== -1) {
+      projetosAtuais.splice(index, 1);
+      this.projetosSubject.next(projetosAtuais); // Atualiza a lista de projetos
+      localStorage.setItem('projetos', JSON.stringify(projetosAtuais)); // Atualiza o localStorage
+    }
+  }
+
+  refreshProjetos(): void {
+    // Recarrega os projetos do localStorage e emite novamente para atualizar todas as inscrições
+    const projetosSalvos = localStorage.getItem('projetos');
+    const projetosIniciais = projetosSalvos ? JSON.parse(projetosSalvos) : [];
+    this.projetosSubject.next(projetosIniciais);
   }
 }

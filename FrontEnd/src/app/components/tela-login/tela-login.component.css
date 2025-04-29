@@ -72,3 +72,9 @@ button:hover {
   padding: 8px;
   background-color: #156134;
 }
+
+.erro {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}

@@ -1,23 +1,31 @@
+<h1 class="titulo-pagina">Projetos Cadastrados</h1>
+
 <div class="container">
-  <h1 class="titulo">Projetos Cadastrados</h1>
+  <div class="lista-projetos">
+    <div class="projeto" *ngFor="let projeto of listaProjetos">
+      <h2>{{ projeto.nome }}</h2>
+      <p><strong>Status:</strong> {{ projeto.status }}</p>
+      <p><strong>Descrição:</strong> {{ projeto.descricao }}</p>
+      <p><strong>Responsável:</strong> {{ projeto.responsavel }}</p>
 
-  <div class="card" *ngFor="let projeto of listaProjetos">
-    <h2>{{ projeto.nome }}</h2>
-    <p><strong>Status:</strong> {{ projeto.status }}</p>
-    <p><strong>Descrição:</strong> {{ projeto.descricao }}</p>
-    <p><strong>Responsável:</strong> {{ projeto.responsavel }}</p>
-
-    <div class="botoes">
-      <button
-        class="botao-editar"
-        [routerLink]="['/editar-projeto', projeto.id]"
-      >
-        Editar
-      </button>
-
-      <button (click)="excluirProjeto(projeto.id)" class="botao-excluir">
-        Excluir Projeto
-      </button>
+      <!-- Botões para editar e excluir -->
+      <div class="botoes">
+        <button
+          class="botao-editar"
+          [routerLink]="['/editar-projeto', projeto.id]"
+        >
+          Editar
+        </button>
+        <button class="botao-excluir" (click)="excluirProjeto(projeto.id)">
+          Excluir
+        </button>
+      </div>
     </div>
   </div>
+</div>
+
+<div class="botao-container">
+  <button class="botao" routerLink="/cadastro-projeto">
+    Criar Novo Projeto
+  </button>
 </div>

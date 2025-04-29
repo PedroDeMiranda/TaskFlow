@@ -1,45 +1,147 @@
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 16px;
-  color: #012840;
+/* Reseta as margens e o padding de todos os elementos */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.titulo {
+body,
+html {
+  background-color: #001f3f;
+  font-family: Roboto, sans-serif;
+  color: white;
+  height: 100%;
+}
+
+/* Título da página */
+.titulo-pagina {
   text-align: center;
-  font-size: 32px;
-  margin-bottom: 24px;
+  font-size: 2.5rem;
+  margin: 40px 0 20px;
   color: #fff;
 }
 
-.card {
-  background-color: #fff;
+/* Container principal de projetos */
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
   padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.3);
+  overflow-y: auto;
+  max-height: 70vh;
+  background-color: #001f3f;
+}
+
+/* Lista de projetos com flexbox para ajustar os cards */
+.lista-projetos {
+  display: flex;
+  flex-wrap: wrap; /* Quebra os cards para a linha seguinte quando atingir a largura */
+  gap: 20px; /* Espaçamento entre os cards */
+  justify-content: flex-start; /* Alinha os cards à esquerda */
+  padding-bottom: 20px; /* Espaço inferior para os cards */
+}
+
+/* Estilo dos cards de projeto */
+.projeto {
+  background-color: #003366;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px; /* Tamanho fixo para os cards */
+  height: 350px; /* Tamanho fixo para a altura dos cards */
+  color: white; /* Texto branco dentro do card */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombras leves */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.projeto:hover {
+  transform: translateY(-10px); /* Efeito de elevação ao passar o mouse */
+}
+
+.projeto h2 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.projeto p {
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .botoes {
+  margin-top: 20px;
   display: flex;
   gap: 10px;
-  margin-top: 16px;
+}
+
+/* Estilo dos botões de editar e excluir */
+.botao-editar,
+.botao-excluir {
+  background-color: #218c5f;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 .botao-editar {
-  background-color: #ff8c00;
-  color: black;
-  border: none;
-  padding: 10px 16px;
-  border-radius: 8px;
-  cursor: pointer;
+  background-color: #f39c12;
+}
+
+.botao-editar:hover {
+  background-color: #e67e22;
 }
 
 .botao-excluir {
-  background-color: #8b0000;
+  background-color: #e74c3c;
+}
+
+.botao-excluir:hover {
+  background-color: #c0392b;
+}
+
+/* Botão de "Criar Novo Projeto" fora da container e alinhado à direita */
+.botao-container {
+  max-width: 1000px;
+  margin: 20px auto 40px; /* Margem para o botão */
+  display: flex;
+  justify-content: flex-end; /* Alinha o botão à direita */
+}
+
+.botao {
+  background-color: #218c5f;
   color: white;
+  margin-right: 20px;
   border: none;
-  padding: 10px 16px;
+  padding: 12px 20px;
+  font-size: 1rem;
   border-radius: 8px;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.botao:hover {
+  background-color: #196e4b;
+}
+
+/* Ajuste no layout do botão para criar novo projeto */
+.botao-novo {
+  position: relative;
+  top: 30px; /* Ajusta a posição do botão */
+  background-color: #27ae60;
+  color: white;
+  padding: 12px 20px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.botao-novo:hover {
+  background-color: #2ecc71;
 }

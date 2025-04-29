@@ -1,12 +1,37 @@
 <div class="container">
-  <h1 class="titulo">
-    <span class="fonte-moderna">Task</span
-    ><span class="fonte-cursiva">Flow</span>
-  </h1>
+  <div class="card">
+    <h1 class="titulo">Criação de Conta</h1>
 
-  <input type="text" placeholder="Nome completo" [(ngModel)]="nomeCompleto" />
-  <input type="email" placeholder="E-mail" [(ngModel)]="email" />
-  <input type="password" placeholder="Senha" [(ngModel)]="senha" />
+    <form (ngSubmit)="criarConta()">
+      <input
+        type="text"
+        placeholder="Nome Completo"
+        [(ngModel)]="usuario.nomeCompleto"
+        name="nomeCompleto"
+        required
+      />
 
-  <button (click)="criarUsuario()">Criar Conta</button>
+      <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="usuario.email"
+        name="email"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Senha"
+        [(ngModel)]="usuario.senha"
+        name="senha"
+        required
+      />
+
+      <button type="submit" class="btn-principal">Criar Conta</button>
+
+      <button type="button" class="btn-voltar" (click)="voltar()">
+        Voltar
+      </button>
+    </form>
+  </div>
 </div>

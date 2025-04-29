@@ -1,0 +1,15 @@
+<div class="container">
+  <img src="assets/logo-taskflow.png" alt="Logo TaskFlow" class="logo" />
+
+  <h1 class="titulo">TaskFlow</h1>
+
+  <h2 class="saudacao" *ngIf="nomeUsuario">Olá, {{ nomeUsuario }}!</h2>
+
+  <div class="botoes">
+    <button (click)="irParaEquipe()">Equipe</button>
+    <button (click)="irParaProjetos()">Projetos</button>
+    <button (click)="irParaCadastroProjeto()">Cadastrar Projeto</button>
+    <button (click)="irParaStatusProjetos()">Status de Projetos</button>
+    <!-- NOVO BOTÃO -->
+  </div>
+</div>

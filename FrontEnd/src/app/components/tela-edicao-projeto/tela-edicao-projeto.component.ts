@@ -15,6 +15,7 @@ export class TelaEdicaoProjetoComponent implements OnInit {
   projetoId: string | null = null;
 
   projeto = {
+    id: '',
     nome: '',
     status: '',
     descricao: '',
@@ -31,9 +32,9 @@ export class TelaEdicaoProjetoComponent implements OnInit {
     this.projetoId = this.route.snapshot.paramMap.get('id');
 
     if (this.projetoId) {
-      const projetoEncontrado = this.projetoService.obterProjetoPorId(
-        this.projetoId
-      );
+      const projetoEncontrado = this.projetoService
+        .listarProjetos()
+        .find((p) => p.id === this.projetoId);
       if (projetoEncontrado) {
         this.projeto = { ...projetoEncontrado };
       }
@@ -42,13 +43,24 @@ export class TelaEdicaoProjetoComponent implements OnInit {
 
   salvar() {
     if (this.projetoId) {
+      // Atualizar projeto existente
       this.projetoService.atualizarProjeto(this.projetoId, this.projeto);
-      console.log('Projeto atualizado:', this.projeto);
+    } else {
+      // Adicionar novo projeto (não gera mais ID aqui!)
+      this.projetoService.cadastrarProjeto(this.projeto);
     }
     this.router.navigate(['/projetos']);
+
+    // Forçar a atualização da lista de projetos para garantir que a tela de status seja atualizada
+    this.projetoService.refreshProjetos(); // Método a ser adicionado na service
   }
 
   cancelar() {
     this.router.navigate(['/projetos']);
+  }
+
+  private gerarIdUnico(): string {
+    // Cria um ID único baseado na data e hora
+    return Date.now().toString();
   }
 }
