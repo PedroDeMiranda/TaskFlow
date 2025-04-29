@@ -33,9 +33,9 @@ namespace Back_End.Model.Repository
             return login;
         }
 
-        public async Task<Usuario> BuscarPorId(int id)
+        public async Task<Usuario> BuscarPorId(Guid id) // Alterado o tipo do parâmetro para Guid
         {
-            var lUsuario = await _appDbContext.Usuarios.FirstOrDefaultAsync(a => a.Id == id);
+            var lUsuario = await _appDbContext.Usuarios.FirstOrDefaultAsync(a => a.Id == id); // Comparação agora é entre Guid e Guid
             if (lUsuario != null)
                 return lUsuario;
 
@@ -46,66 +46,71 @@ namespace Back_End.Model.Repository
         {
             try
             {
-                #region  ValidarDados
-                /*
-                if (usuario.Numero.Length < 10 || usuario.Numero.Length > 16)
+                usuario.ValidarDados();
+
+                if (usuario.Id == Guid.Empty) // Novo usuário
                 {
-                    throw new Exception("Telefone invalido!");
+                    usuario.GerarHashSenha(); // Gerar hash só na criação
+                    _appDbContext.Usuarios.Add(usuario);
                 }
-                */
-
-                #endregion
-
-                if (usuario.Id > 0)
+                else // Atualizar usuário existente
                 {
-                    var usuarioEditar = _appDbContext.Usuarios.FirstOrDefault(a => a.Id == usuario.Id);
+                    var usuarioEditar = await _appDbContext.Usuarios
+                        .FirstOrDefaultAsync(a => a.Id == usuario.Id);
 
                     if (usuarioEditar == null)
                     {
-                        throw new Exception("Usuario não encontrado!");
+                        throw new Exception("Usuário não encontrado!");
                     }
 
-                    usuarioEditar.Email = usuario.Email;
                     usuarioEditar.Nome = usuario.Nome;
-                    usuarioEditar.Senha = usuario.Senha;
-                }
-                else
-                {
-                    _appDbContext.Usuarios.Add(usuario);
-                }
+                    usuarioEditar.Email = usuario.Email;
 
+                    // Se for alterar a senha (opcional - depende da regra de negócio)
+                    if (!string.IsNullOrWhiteSpace(usuario.Senha))
+                    {
+                        usuarioEditar.Senha = string.Empty; // Zera para segurança
+                        usuarioEditar.GerarHashSenha();
+                        usuarioEditar.AtualizarSenha(usuario.Senha);
+                    }
+                }
 
                 await _appDbContext.SaveChangesAsync();
-
                 return usuario;
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
                 throw;
             }
         }
 
-        public async Task<bool> Excluir(int id)
+
+        public async Task<bool> Excluir(Guid id) // Alterado o tipo do parâmetro para Guid
         {
             try
             {
-                var usuarioExcluir = _appDbContext.Usuarios.FirstOrDefault(a => a.Id == id);
+                var usuarioExcluir = _appDbContext.Usuarios.FirstOrDefault(a => a.Id == id); // Comparação agora é entre Guid e Guid
 
                 if (usuarioExcluir != null)
                 {
                     _appDbContext.Usuarios.Remove(usuarioExcluir);
                     await _appDbContext.SaveChangesAsync();
+
                     return true;
                 }
 
                 throw new Exception("Usuario não encontrado!");
-
             }
             catch (Exception)
             {
                 throw;
             }
+        }
+
+        public Task<Usuario> BuscarPorId(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

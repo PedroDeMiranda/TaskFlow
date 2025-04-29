@@ -2,14 +2,12 @@
 {
     public interface ITarefaRepository
     {
-        Task<List<Tarefas>> List();
+        Task<List<Tarefa>> Listar();
 
-        Task<Tarefas> BuscarporId(int id);
+        Task<Tarefa> BuscarporId(int id);
 
-        Task<Tarefas> Salvar(Tarefas tarefas);
+        Task<Tarefa> Salvar(Tarefa tarefas);
 
-        Task<Tarefas> Excluir(int id);
-
-        Task<Tarefas> Editar(int id);
+        Task<Tarefa> Excluir(int id);
     }
 }
