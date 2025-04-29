@@ -10,5 +10,7 @@ namespace Back_End.Infra.Data
         public DbSet<Usuario> Usuarios { get; set; }
 
         public DbSet<Tarefa> Tarefas { get; set; }
+
+        public DbSet<Projeto> Projetos { get; set; }
     }
 }
