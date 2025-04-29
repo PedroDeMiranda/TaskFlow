@@ -1,37 +1,74 @@
-﻿using Back_End.Model.Repository.Interfaces;
+﻿using Back_End.Infra.Data;
+using Back_End.Model.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Back_End.Model.Repository
 {
     public class TarefaRepository : ITarefaRepository
     {
-        public Task<Tarefas> BuscarporId(int id)
+        private readonly AppDbContext _appDbContext;
+
+        public TarefaRepository(AppDbContext appDbContext)
         {
-            throw new NotImplementedException();
+            _appDbContext = appDbContext;
         }
 
-        public Task<Tarefas> Editar(int id)
+        public async Task<Tarefa> BuscarporId(int id)
         {
-            throw new NotImplementedException();
+            var tarefa = await _appDbContext.Tarefas.FirstOrDefaultAsync(t => t.Id == id);
+            if (tarefa != null)
+                return tarefa;
+
+            throw new Exception("Tarefa não encontrada!");
         }
 
-        public Task<Tarefas> Excluir(int id)
+        public async Task<Tarefa> Excluir(int id)
         {
-            throw new NotImplementedException();
+            var tarefaExcluir = await _appDbContext.Tarefas.FirstOrDefaultAsync(t => t.Id == id);
+
+            if (tarefaExcluir == null)
+                throw new Exception("Tarefa não encontrada!");
+
+            _appDbContext.Tarefas.Remove(tarefaExcluir);
+            await _appDbContext.SaveChangesAsync();
+
+            return tarefaExcluir;
         }
 
-        public Task<List<Tarefas>> List()
+        public async Task<List<Tarefa>> Listar()
         {
-            throw new NotImplementedException();
+            return await _appDbContext.Tarefas.ToListAsync();
         }
 
-        public Task<List<Tarefas>> Listar()
+        public async Task<Tarefa> Salvar(Tarefa tarefa)
         {
-            throw new NotImplementedException();
-        }
+            if (tarefa == null)
+                throw new ArgumentNullException(nameof(tarefa));
 
-        public Task<Tarefas> Salvar(Tarefas tarefas)
-        {
-            throw new NotImplementedException();
+            if (tarefa.Id > 0)
+            {
+                var tarefaEditar = await _appDbContext.Tarefas.FirstOrDefaultAsync(t => t.Id == tarefa.Id);
+
+                if (tarefaEditar == null)
+                    throw new Exception("Tarefa não encontrada!");
+
+                tarefaEditar.Name = tarefa.Name;
+                tarefaEditar.Description = tarefa.Description;
+                tarefaEditar.Usuario = tarefa.Usuario;
+
+                _appDbContext.Tarefas.Update(tarefaEditar);
+            }
+            else
+            {
+                await _appDbContext.Tarefas.AddAsync(tarefa);
+            }
+
+            await _appDbContext.SaveChangesAsync();
+
+            return tarefa;
         }
     }
 }
