@@ -10,21 +10,31 @@ var serverVersion = new MySqlServerVersion(new Version(8, 0, 23));
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
-options.UseMySql(connectionString, serverVersion)
-.LogTo(Console.WriteLine, LogLevel.Information)
-.EnableSensitiveDataLogging()
-.EnableDetailedErrors());
+    options.UseMySql(connectionString, serverVersion)
+           .LogTo(Console.WriteLine, LogLevel.Information)
+           .EnableSensitiveDataLogging()
+           .EnableDetailedErrors());
+
 builder.Services.AddScoped<ITarefaRepository, TarefaRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -32,6 +42,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+// Ativando CORS
+app.UseCors();
 
 app.UseAuthorization();
 
