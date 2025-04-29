@@ -1,6 +1,7 @@
 {
   "format": 1,
   "restore": {
+<<<<<<< HEAD
     "C:\\Users\\tiago.grigull\\source\\repos\\Back-End\\BackEnd\\Back-End\\Back-End.csproj": {}
   },
   "projects": {
@@ -12,12 +13,29 @@
         "projectPath": "C:\\Users\\tiago.grigull\\source\\repos\\Back-End\\BackEnd\\Back-End\\Back-End.csproj",
         "packagesPath": "C:\\Users\\tiago.grigull\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\tiago.grigull\\source\\repos\\Back-End\\BackEnd\\Back-End\\obj\\",
+=======
+    "C:\\Users\\Usuario\\Source\\Repos\\TaskFlow\\BackEnd\\Back-End\\Back-End.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Usuario\\Source\\Repos\\TaskFlow\\BackEnd\\Back-End\\Back-End.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Usuario\\Source\\Repos\\TaskFlow\\BackEnd\\Back-End\\Back-End.csproj",
+        "projectName": "Back-End",
+        "projectPath": "C:\\Users\\Usuario\\Source\\Repos\\TaskFlow\\BackEnd\\Back-End\\Back-End.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\TaskFlow\\BackEnd\\Back-End\\obj\\",
+>>>>>>> 03022e827fbde9f0a1823cc4f7a239ef42ef5451
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
+<<<<<<< HEAD
           "C:\\Users\\tiago.grigull\\AppData\\Roaming\\NuGet\\NuGet.Config",
+=======
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
+>>>>>>> 03022e827fbde9f0a1823cc4f7a239ef42ef5451
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -84,7 +102,11 @@
               "privateAssets": "all"
             }
           },
+<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+=======
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+>>>>>>> 03022e827fbde9f0a1823cc4f7a239ef42ef5451
         }
       }
     }
