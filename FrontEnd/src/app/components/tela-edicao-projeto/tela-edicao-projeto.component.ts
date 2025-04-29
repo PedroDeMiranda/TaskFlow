@@ -42,17 +42,19 @@ export class TelaEdicaoProjetoComponent implements OnInit {
   }
 
   salvar() {
+    if (this.projeto.status) {
+      this.projeto.status = this.projeto.status.trim().toLowerCase();
+    }
+
     if (this.projetoId) {
       // Atualizar projeto existente
       this.projetoService.atualizarProjeto(this.projetoId, this.projeto);
     } else {
-      // Adicionar novo projeto (não gera mais ID aqui!)
+      // Adicionar novo projeto
       this.projetoService.cadastrarProjeto(this.projeto);
     }
-    this.router.navigate(['/projetos']);
 
-    // Forçar a atualização da lista de projetos para garantir que a tela de status seja atualizada
-    this.projetoService.refreshProjetos(); // Método a ser adicionado na service
+    this.router.navigate(['/projetos']);
   }
 
   cancelar() {

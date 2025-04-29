@@ -4,11 +4,11 @@
   <label>Nome do Projeto:</label>
   <input type="text" [(ngModel)]="projeto.nome" placeholder="Nome do projeto" />
 
-  <label>Status:</label>
-  <select [(ngModel)]="projeto.status">
-    <option>Parado</option>
-    <option>Em andamento</option>
-    <option>Concluído</option>
+  <label for="status">Status:</label>
+  <select [(ngModel)]="projeto.status" id="status">
+    <option value="em andamento">Em Andamento</option>
+    <option value="parado">Parado</option>
+    <option value="concluido">Concluído</option>
   </select>
 
   <label>Descrição:</label>

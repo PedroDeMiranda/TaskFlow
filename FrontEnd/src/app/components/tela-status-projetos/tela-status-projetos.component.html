@@ -1,33 +1,78 @@
 <h1 class="titulo-pagina">Status de Projetos</h1>
 
 <div class="container">
-  <div class="coluna">
+  <div
+    class="coluna"
+    cdkDropList
+    #andamentoList="cdkDropList"
+    id="andamentoList"
+    [cdkDropListData]="projetosEmAndamento"
+    [cdkDropListConnectedTo]="['paradoList', 'concluidoList']"
+    (cdkDropListDropped)="onDrop($event, 'em andamento')"
+  >
     <h2>Em Andamento</h2>
     <div class="lista-projetos">
-      <div class="projeto" *ngFor="let projeto of projetosEmAndamento">
+      <div
+        *ngFor="let projeto of projetosEmAndamento"
+        class="projeto"
+        cdkDrag
+        [cdkDragData]="projeto"
+      >
         <h3>{{ projeto.nome }}</h3>
         <p>{{ projeto.descricao }}</p>
+        <span>{{ projeto.status }}</span>
       </div>
     </div>
   </div>
 
-  <div class="coluna">
+  <div
+    class="coluna"
+    cdkDropList
+    #paradoList="cdkDropList"
+    id="paradoList"
+    [cdkDropListData]="projetosParados"
+    [cdkDropListConnectedTo]="['andamentoList', 'concluidoList']"
+    (cdkDropListDropped)="onDrop($event, 'parado')"
+  >
     <h2>Parado</h2>
     <div class="lista-projetos">
-      <div class="projeto" *ngFor="let projeto of projetosParados">
+      <div
+        *ngFor="let projeto of projetosParados"
+        class="projeto"
+        cdkDrag
+        [cdkDragData]="projeto"
+      >
         <h3>{{ projeto.nome }}</h3>
         <p>{{ projeto.descricao }}</p>
+        <span>{{ projeto.status }}</span>
       </div>
     </div>
   </div>
 
-  <div class="coluna">
+  <div
+    class="coluna"
+    cdkDropList
+    #concluidoList="cdkDropList"
+    id="concluidoList"
+    [cdkDropListData]="projetosConcluidos"
+    [cdkDropListConnectedTo]="['andamentoList', 'paradoList']"
+    (cdkDropListDropped)="onDrop($event, 'concluido')"
+  >
     <h2>Concluído</h2>
     <div class="lista-projetos">
-      <div class="projeto" *ngFor="let projeto of projetosConcluidos">
+      <div
+        *ngFor="let projeto of projetosConcluidos"
+        class="projeto"
+        cdkDrag
+        [cdkDragData]="projeto"
+      >
         <h3>{{ projeto.nome }}</h3>
         <p>{{ projeto.descricao }}</p>
+        <span>{{ projeto.status }}</span>
       </div>
     </div>
   </div>
+</div>
+<div class="voltar-container">
+  <button class="botao-voltar" (click)="voltarParaLogado()">Voltar</button>
 </div>

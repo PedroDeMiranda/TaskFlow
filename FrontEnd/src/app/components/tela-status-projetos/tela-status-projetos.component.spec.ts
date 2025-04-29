@@ -8,10 +8,9 @@ describe('TelaStatusProjetosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TelaStatusProjetosComponent]
-    })
-    .compileComponents();
-    
+      imports: [TelaStatusProjetosComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TelaStatusProjetosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
