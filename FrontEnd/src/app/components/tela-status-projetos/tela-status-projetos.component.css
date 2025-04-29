@@ -14,7 +14,7 @@ html {
 
 .container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -22,6 +22,9 @@ html {
 }
 .container h2 {
   color: #fff;
+}
+h2 {
+  text-align: center;
 }
 
 .coluna {
@@ -40,9 +43,34 @@ html {
 }
 
 .projeto {
-  background-color: #004080;
-  padding: 15px;
+  color: #fff;
+  margin: 10px;
+  padding: 10px;
+  background-color: #003366;
+  border-radius: 4px;
+}
+
+.status {
+  display: block;
+  font-size: 0.9em;
+  color: #003366;
+  margin-top: 10px;
+}
+
+.coluna {
+  width: 30%;
+  margin: 10px;
+  padding: 10px;
+  background-color: #1c5fa1;
+  min-height: 300px;
   border-radius: 8px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
 }
 
 .projeto h3 {
@@ -52,4 +80,28 @@ html {
 
 .projeto p {
   font-size: 1rem;
+}
+
+.voltar-container {
+  max-width: 1200px;
+  margin: 20px auto 0;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 30px;
+}
+
+.botao-voltar {
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: Roboto, sans-serif;
+}
+
+.botao-voltar:hover {
+  background-color: #219653;
 }
