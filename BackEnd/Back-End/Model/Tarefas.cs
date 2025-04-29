@@ -8,13 +8,19 @@ namespace Back_End.Model
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)] //Gerar Sequence
-        public Guid Id { get; set; }
+        public int Id { get; set; }
+
         [Required]
         public string Name { get; set; }
+
         [Required]
         public string Descricao { get; set; }
+
         [Required]
         public string Tipo { get; set; }
+
+        public Usuario Usuario { get; set; }
+        public Projeto Projeto { get; set; }
 
 
     }

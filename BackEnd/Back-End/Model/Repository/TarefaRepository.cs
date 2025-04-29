@@ -19,6 +19,11 @@ namespace Back_End.Model.Repository
             throw new NotImplementedException();
         }
 
+        public Task<List<Tarefas>> List()
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<List<Tarefas>> Listar()
         {
             throw new NotImplementedException();
