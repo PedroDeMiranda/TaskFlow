@@ -108,14 +108,6 @@ namespace Back_End.Model.Repository
             }
         }
 
-        public Task<Usuario> BuscarPorId(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> Excluir(Guid id)
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

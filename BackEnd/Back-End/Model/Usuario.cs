@@ -69,15 +69,16 @@ namespace Back_End.Model
                 throw new ArgumentException("O campo Email não pode estar vazio.");
             }
 
-            // Regex robusta para email baseada em padrões RFC 5322
-            var emailRegex = new Regex(@"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
-                + @"([-a-zA-Z0-9!#\$%&'\*\+/=\?\^_`\{\}\|~]|(?<!\.)\.)*)(?<=@)"
-                + @"[a-zA-Z0-9]([\-]?[a-zA-Z0-9])*(\.[a-zA-Z0-9]([\-]?[a-zA-Z0-9])*)+$");
-
-            if (!emailRegex.IsMatch(Email))
+            if (!IsEmail(Email))
             {
                 throw new ArgumentException("Email inválido.");
             }
+        }
+
+        public static bool IsEmail(string strEmail)
+        {
+            string strModelo = @"^([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$";
+            return Regex.IsMatch(strEmail, strModelo);
         }
 
         private void ValidarSenha()

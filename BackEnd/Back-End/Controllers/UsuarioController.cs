@@ -31,7 +31,7 @@ namespace Back_End.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> BuscarPorId(Guid id)
+        public async Task<IActionResult> BuscarPorId(int id)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace Back_End.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Excluir(Guid id)
+        public async Task<IActionResult> Excluir(int id)
         {
             try
             {
