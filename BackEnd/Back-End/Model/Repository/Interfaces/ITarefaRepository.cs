@@ -9,7 +9,5 @@
         Task<Tarefa> Salvar(Tarefa tarefas);
 
         Task<Tarefa> Excluir(int id);
-
-        Task<Tarefa> Editar(int id);
     }
 }

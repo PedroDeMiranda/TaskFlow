@@ -2,7 +2,7 @@
 
 namespace Back_End.Model
 {
-    public class Tarefas
+    public class Tarefa
     {
         [Key]
         public int Id { get; set; }
@@ -14,8 +14,6 @@ namespace Back_End.Model
         public string Description { get; set; }
 
         [Required]
-        public string Type { get; set; }
-
-
+        public Usuario Usuario { get; set; }
     }
 }
