@@ -48,7 +48,7 @@ namespace Back_End.Model.Repository
             {
                 usuario.ValidarDados();
 
-                if (usuario.Id < 0) // Novo usuário
+                if (usuario.Id == 0) // Novo usuário
                 {
                     usuario.GerarHashSenha(); // Gerar hash só na criação
                     _appDbContext.Usuarios.Add(usuario);
