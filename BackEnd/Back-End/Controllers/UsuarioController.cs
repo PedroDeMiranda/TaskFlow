@@ -1,12 +1,12 @@
-﻿using System.Text;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Back_End.Model;
 using Back_End.Model.Repository.Interfaces;
+using System.Threading.Tasks;
 
 namespace Back_End.Controllers
 {
-
     [ApiController]
+    [Route("api/usuarios")]
     public class UsuariosController : ControllerBase
     {
         private readonly IUsuarioRepository _repository;
@@ -16,68 +16,69 @@ namespace Back_End.Controllers
             _repository = repository;
         }
 
-        [HttpGet("api/usuarios")]
-        public IActionResult GetUsuarios()
+        [HttpGet]
+        public async Task<IActionResult> GetUsuarios()
         {
             try
             {
-                var carrinhos = _repository.Listar().Result;
-                return Ok(carrinhos);
-
+                var usuarios = await _repository.Listar();
+                return Ok(usuarios);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return Unauthorized(e);
+                return StatusCode(500, $"Erro ao buscar usuários: {ex.Message}");
             }
         }
 
-        [HttpPost("api/usuarios")]
-        public IActionResult Salvar(Usuario usuario)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> BuscarPorId(Guid id)
         {
             try
             {
+                var usuario = await _repository.BuscarPorId(id);
+                if (usuario == null)
+                    return NotFound($"Usuário com ID {id} não encontrado.");
 
-                var lRusltoSalvarusuario = _repository.Salvar(usuario).Result;
-                return Ok(lRusltoSalvarusuario);
-
+                return Ok(usuario);
             }
-            catch (Exception error)
+            catch (Exception ex)
             {
-                return ValidationProblem(new ValidationProblemDetails() { Detail = error.Message });
+                return StatusCode(500, $"Erro ao buscar usuário: {ex.Message}");
             }
         }
 
-        [HttpDelete("api/usuarios/{id}")]
-        public IActionResult excluir(int id)
+        [HttpPost]
+        public async Task<IActionResult> Salvar([FromBody] Usuario usuario)
         {
             try
             {
-                var retorno = _repository.Excluir(id).Result;
-                return Ok(retorno);
-            }
-            catch (Exception e)
-            {
-                return NotFound(e.Message);
-            }
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
+                var resultado = await _repository.Salvar(usuario);
+                return CreatedAtAction(nameof(BuscarPorId), new { id = resultado.Id }, resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao salvar usuário: {ex.Message}");
+            }
         }
 
-
-        [HttpGet("api/usuarios/{id}")]
-        public IActionResult BuscarPorId(int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Excluir(Guid id)
         {
             try
             {
-                var retorno = _repository.BuscarPorId(id).Result;
-                return Ok(retorno);
+                var sucesso = await _repository.Excluir(id);
+                if (!sucesso)
+                    return NotFound($"Usuário com ID {id} não encontrado para exclusão.");
+
+                return NoContent();
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                return NotFound(e.Message);
+                return StatusCode(500, $"Erro ao excluir usuário: {ex.Message}");
             }
-
         }
-
-
     }
 }
