@@ -1,0 +1,37 @@
+<div class="container">
+  <div class="card">
+    <h1 class="titulo">Criação de Conta</h1>
+
+    <form (ngSubmit)="criarConta()">
+      <input
+        type="text"
+        placeholder="Nome Completo"
+        [(ngModel)]="usuario.nomeCompleto"
+        name="nomeCompleto"
+        required
+      />
+
+      <input
+        type="email"
+        placeholder="Email"
+        [(ngModel)]="usuario.email"
+        name="email"
+        required
+      />
+
+      <input
+        type="password"
+        placeholder="Senha"
+        [(ngModel)]="usuario.senha"
+        name="senha"
+        required
+      />
+
+      <button type="submit" class="btn-principal">Criar Conta</button>
+
+      <button type="button" class="btn-voltar" (click)="voltar()">
+        Voltar
+      </button>
+    </form>
+  </div>
+</div>

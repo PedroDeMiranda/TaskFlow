@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>Editar Projeto</h1>
+
+  <label>Nome do Projeto:</label>
+  <input type="text" [(ngModel)]="projeto.nome" placeholder="Nome do projeto" />
+
+  <label>Status:</label>
+  <select [(ngModel)]="projeto.status">
+    <option>Parado</option>
+    <option>Em andamento</option>
+    <option>Concluído</option>
+  </select>
+
+  <label>Descrição:</label>
+  <textarea
+    [(ngModel)]="projeto.descricao"
+    placeholder="Breve descrição do projeto"
+  ></textarea>
+
+  <label>Profissional Responsável:</label>
+  <select [(ngModel)]="projeto.responsavel">
+    <option>Ana Beatriz Souza</option>
+    <option>Carlos Henrique Lima</option>
+  </select>
+
+  <div class="botoes">
+    <button class="salvar" (click)="salvar()">Salvar</button>
+    <button class="cancelar" (click)="cancelar()">Cancelar</button>
+  </div>
+</div>

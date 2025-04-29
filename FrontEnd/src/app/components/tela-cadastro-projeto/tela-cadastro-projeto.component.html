@@ -1,0 +1,26 @@
+<div class="container">
+  <h1 class="titulo">Cadastrar Projeto</h1>
+
+  <input
+    type="text"
+    [(ngModel)]="nomeProjeto"
+    placeholder="Nome do projeto"
+    class="campo"
+  />
+
+  <textarea
+    [(ngModel)]="descricao"
+    placeholder="Breve descrição do projeto"
+    class="campo"
+  ></textarea>
+
+  <select [(ngModel)]="responsavel" class="campo">
+    <option value="" disabled selected>Selecione o responsável</option>
+    <option *ngFor="let membro of membrosEquipe">{{ membro }}</option>
+  </select>
+
+  <div style="display: flex; gap: 16px; margin-top: 20px">
+    <button class="botao" (click)="cadastrarProjeto()">Cadastrar</button>
+    <button class="botao" routerLink="/projetos">Cancelar</button>
+  </div>
+</div>
